@@ -1,0 +1,1123 @@
+backend:
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+media_folder: theme/assets/images
+public_folder: /assets/images
+collections:
+  - name: pages
+    label: Pages
+    identifier_field: title
+    extension: md
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    folder: cms/pages
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '{{slug}}.html'
+      - &ref_0
+        label: Seo
+        name: seo
+        widget: object
+        collapsed: true
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: string
+            required: false
+          - label: No index
+            name: noindex
+            widget: boolean
+            default: false
+            required: false
+          - label: Open Graph Title
+            name: og:title
+            widget: string
+            required: false
+          - label: Open Graph Image
+            name: og:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Twitter Title
+            name: twitter:title
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Card
+            name: twitter:card
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Site
+            name: twitter:site
+            widget: string
+            required: false
+          - label: Twitter Creator
+            name: twitter:creator
+            widget: string
+            required: false
+          - label: Additional HTML tags
+            name: additional_tags
+            widget: text
+            required: false
+  - name: steps
+    label: Steps
+    folder: cms/steps
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Description
+        name: body
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_featured-image
+        label: Featured Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_content
+        label: Content
+        widget: string
+        required: false
+      - hint: ''
+        name: f_order
+        label: Order
+        widget: number
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: steps
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[steps].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: focus
+    label: Focus
+    folder: cms/focus
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - label: Content
+        name: body
+        widget: markdown
+        required: false
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_title
+        label: Title
+        widget: string
+        required: false
+      - hint: ''
+        name: f_featured-media
+        label: Featured Media
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_content-title
+        label: Content Title
+        widget: string
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: focus
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[focus].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: audience_type
+    label: Audience Types
+    folder: cms/audience-type
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: audience-type
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[audience-type].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: funding_types
+    label: Funding Types
+    folder: cms/funding-types
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: funding-types
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[funding-types].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: monetization_types
+    label: Monetization Types
+    folder: cms/monetization-types
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: monetization-types
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[monetization-types].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: personas
+    label: Personas
+    folder: cms/personas
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Description
+        name: body
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_featured-image-2
+        label: Featured Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_min-employee
+        label: min employee
+        widget: number
+        required: false
+      - hint: ''
+        name: f_max-employee
+        label: max employee
+        widget: number
+        required: false
+      - hint: ''
+        name: f_funding-types
+        label: Funding Types
+        widget: relation
+        required: false
+        collection: funding_types
+        value_field: cms/funding-types/{{slug}}.md
+        search_fields:
+          - slug
+          - name
+        display_fields:
+          - title
+        multiple: true
+      - hint: ''
+        name: f_monetization-types-2
+        label: Monetization Types
+        widget: relation
+        required: false
+        collection: monetization_types
+        value_field: cms/monetization-types/{{slug}}.md
+        search_fields:
+          - slug
+          - name
+        display_fields:
+          - title
+        multiple: true
+      - hint: ''
+        name: f_audience-types
+        label: Audience Types
+        widget: relation
+        required: false
+        collection: audience_type
+        value_field: cms/audience-type/{{slug}}.md
+        search_fields:
+          - slug
+          - name
+        display_fields:
+          - title
+        multiple: true
+      - hint: ''
+        name: f_budget-minimum-2
+        label: Budget Minimum
+        widget: string
+        required: false
+      - hint: ''
+        name: f_budget-maxmimum
+        label: Budget Maxmimum
+        widget: string
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: personas
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[personas].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: case_studies
+    label: Case Studies
+    folder: cms/case-studies
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - label: Content
+        name: body
+        widget: markdown
+        required: false
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_content-title
+        label: Content Title
+        widget: string
+        required: false
+      - hint: ''
+        name: f_featured-image
+        label: Featured Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_excerpt
+        label: Excerpt
+        widget: string
+        required: false
+      - hint: ''
+        name: f_collection-page-image
+        label: Collection Page Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: case-studies
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[case-studies].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: clients
+    label: Clients
+    folder: cms/clients
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_company-logo
+        label: Company Logo
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_case-study
+        label: Case Study
+        widget: relation
+        required: false
+        collection: case_studies
+        value_field: cms/case-studies/{{slug}}.md
+        search_fields:
+          - slug
+          - name
+        display_fields:
+          - title
+        multiple: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: clients
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[clients].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - label: Theme Settings
+    name: settings
+    identifier_field: title
+    extension: json
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    files:
+      - label: General
+        name: site
+        file: cms/_data/settings/site.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: General
+          - hint: Full domain url (needed for a correct sitemap file)
+            name: domain
+            label: Domain
+            widget: string
+            required: false
+          - name: favicon
+            label: Favicon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: apple_touch_icon
+            label: Apple Touch Icon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: header_additional_content
+            label: Additional Content Header
+            hint: Content here will be placed before </head> tag
+            widget: text
+            required: false
+          - name: footer_additional_content
+            label: Additional Content Footer
+            hint: Content here will be placed before </body> tag
+            widget: text
+            required: false
+          - name: images_optimization
+            label: Images Optimization
+            widget: object
+            collapsed: false
+            fields:
+              - label: Image Formats
+                name: formats
+                widget: select
+                multiple: true
+                options:
+                  - label: Avif
+                    value: avif
+                  - label: Webp
+                    value: webp
+              - label: Image Dimensions
+                name: dimensions
+                widget: select
+                multiple: true
+                options:
+                  - label: '500'
+                    value: 500
+                  - label: '800'
+                    value: 800
+                  - label: '1080'
+                    value: 1080
+                  - label: '1600'
+                    value: 1600
+                  - label: '2000'
+                    value: 2000
+                  - label: '2600'
+                    value: 2600
+      - label: Colors
+        name: colors
+        file: cms/_data/colors.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Colors
+      - label: Texts
+        name: texts
+        file: cms/_data/texts.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Texts
+          - hint: >-
+              Original text: Immersive Growth Consulting, Done Right., key:
+              -511c5fee
+            label: Text
+            name: '-511c5fee'
+            widget: string
+          - hint: 'Original text: No items found., key: 3d503d2b'
+            label: Text
+            name: 3d503d2b
+            widget: string
+          - hint: 'Original text: Our Philosophy, key: 234a905'
+            label: Text
+            name: 234a905
+            widget: string
+          - hint: >-
+              Original text: When it comes to growth, we believe that more is
+              involved than just marketing tactics. Our experience has taught us
+              that Growth truly stems from rapid experimentation across multiple
+              departments, such as Product, Marketing, Sales, Customers Success,
+              and even Leadership in some cases., key: -713b1d8e
+            label: Text
+            name: '-713b1d8e'
+            widget: text
+          - hint: "Original text: Growth is driven by a companywide cultural shift in perspective and we focus on inspiring this perspective for the teams that we work with. \_Every company needs a unique growth strategy specific to its culture, brand, and audience. There is no one size fits all., key: -13a2bfe8"
+            label: Text
+            name: '-13a2bfe8'
+            widget: text
+          - hint: 'Original text: case studies, key: 2c7c7737'
+            label: Text
+            name: 2c7c7737
+            widget: string
+          - hint: 'Original text: The results speak for themselves, key: -50574bc'
+            label: Text
+            name: '-50574bc'
+            widget: string
+          - hint: 'Original text: View More, key: 162663f0'
+            label: Text
+            name: 162663f0
+            widget: string
+          - hint: 'Original text: Our Approach, key: 819763c'
+            label: Text
+            name: 819763c
+            widget: string
+          - hint: >-
+              Original text: Our team focuses on inside-out growth strategies
+              that truly create a long-term change within our clients. In most
+              cases, our clients are already growing, or have grown in the past.
+              They typically hit a plateau and they can never seem to understand
+              why., key: 4c6c0ce2
+            label: Text
+            name: 4c6c0ce2
+            widget: text
+          - hint: >-
+              Original text: The team at GrowthMeta is comprised of strategist
+              that have backgrounds in a wide range of area. These areas consist
+              of Marketing, Sales, Customer Success, User Experience Design,
+              Product Managers, and of course, Engineers. We don't believe that
+              Growth is a marketing and sales problem, we believe that it's a
+              product market fit issue in most cases. Every client is unique and
+              we take an extensive approach to diagnosis the root issues, create
+              formula's for growth, then execute experimentation until we find
+              what works for your target audience., key: -16eddda1
+            label: Text
+            name: '-16eddda1'
+            widget: text
+          - hint: 'Original text: Discovery, key: 7038a590'
+            label: Text
+            name: 7038a590
+            widget: string
+          - hint: 'Original text: Team Interviews & Data Analysis, key: 1d213ead'
+            label: Text
+            name: 1d213ead
+            widget: string
+          - hint: 'Original text: Build, key: 3d8d64e'
+            label: Text
+            name: 3d8d64e
+            widget: string
+          - hint: 'Original text: Hypothesize & Experiments, key: -435285a2'
+            label: Text
+            name: '-435285a2'
+            widget: string
+          - hint: 'Original text: Sprint, key: -6bfe11c6'
+            label: Text
+            name: '-6bfe11c6'
+            widget: string
+          - hint: 'Original text: Agile Experiment Execution, key: -46fa1147'
+            label: Text
+            name: '-46fa1147'
+            widget: string
+          - hint: >-
+              Original text: In most cases, this is due to the organization
+              lacking fresh perspectives. An organization without a fresh
+              perspective of their product and target market leads to
+              essentially growth within a box. You cannot find more customers
+              because you have limited your customer base, when in reality there
+              is a multitude of markets available for the taking., key:
+              -3c32da32
+            label: Text
+            name: '-3c32da32'
+            widget: text
+          - hint: >-
+              Original text: We start with re-engineering your current
+              perspective of success. We want to know what you seek from our
+              team and we work backwards. This allows our team to strategically
+              analyze a wide range of factors during discovery, which will lead
+              to many new learnings and perspectives. These learnings, will
+              drive the next phase of innovation for your business., key:
+              2837b961
+            label: Text
+            name: 2837b961
+            widget: text
+          - hint: 'Original text: Interested In Growth?, key: 50e1e74'
+            label: Text
+            name: 50e1e74
+            widget: string
+          - hint: 'Original text: Download our , key: 2e0ba6cc'
+            label: Text
+            name: 2e0ba6cc
+            widget: string
+          - hint: 'Original text: Growth Checklist , key: -10f31ccd'
+            label: Text
+            name: '-10f31ccd'
+            widget: string
+          - hint: 'Original text: and get started, key: 3de3d0ee'
+            label: Text
+            name: 3de3d0ee
+            widget: string
+          - hint: 'Original text: ., key: 2e'
+            label: Text
+            name: 2e
+            widget: string
+          - hint: 'Original text: Congrats, your , key: 143d1446'
+            label: Text
+            name: 143d1446
+            widget: string
+          - hint: 'Original text: Growth Checklist, key: 7310ee8d'
+            label: Text
+            name: 7310ee8d
+            widget: string
+          - hint: 'Original text:  is on the way!, key: 479ff0ac'
+            label: Text
+            name: 479ff0ac
+            widget: string
+          - hint: 'Original text: Oops! Something went wrong., key: 5e8b37c5'
+            label: Text
+            name: 5e8b37c5
+            widget: string
+          - hint: 'Original text: Quality Over Quantity, key: -5e451b2a'
+            label: Text
+            name: '-5e451b2a'
+            widget: string
+          - hint: >-
+              Original text: GrowthMeta is an immersive consultancy, which means
+              that we dive deep into your companies culture, history, products,
+              roadmaps, marketing strategies, and more. Due to the intensity
+              that we immerse, we only work with a maximum of 6 clients., key:
+              -5730522e
+            label: Text
+            name: '-5730522e'
+            widget: text
+          - hint: >-
+              Original text: These 6 clients range based on their current
+              stages. We take this approach so that we can keep current as
+              practitioners of companies of all sizes. Our client breakdown
+              typically consists of four companies that have between 75 and 500
+              employees, that have either raised a Series A or bootstrapped and
+              built off success. Then, we also take at least two clients that
+              have between 10 and 50 employees, that are currently in the
+              pre-seed or seed stage., key: 3bc7517e
+            label: Text
+            name: 3bc7517e
+            widget: text
+          - hint: 'Original text: Our Focus, key: 4379ec4'
+            label: Text
+            name: 4379ec4
+            widget: string
+          - hint: >-
+              Original text: The growth lifecycle is vast, it includes many
+              areas of the company beyond marketing. We take a unique approach
+              that includes establishing key goals, then extracting
+              opportunities and issues from the team in-order to build a
+              baseline for accountability. , key: 32220a59
+            label: Text
+            name: 32220a59
+            widget: text
+          - hint: 'Original text: Sprint Lifecycle, key: -70a3e71c'
+            label: Text
+            name: '-70a3e71c'
+            widget: string
+          - hint: 'Original text: How It Works, key: -5d0ca1c3'
+            label: Text
+            name: '-5d0ca1c3'
+            widget: string
+          - hint: >-
+              Original text: Everything our team does is based on Agile
+              processes. We believe that failing as fast as possible is the best
+              way to identify new opportunities. This helps our clients get out
+              of the process of thinking and into the process of doing., key:
+              33158fd7
+            label: Text
+            name: 33158fd7
+            widget: text
+          - hint: 'Original text: Want Growth Resources?, key: -7a935b3d'
+            label: Text
+            name: '-7a935b3d'
+            widget: string
+          - hint: >-
+              Original text: Learn about what our team is doing in the Growth
+              space for top brands. We'll provide you with the insights required
+              to Grow., key: 5d8d8c8e
+            label: Text
+            name: 5d8d8c8e
+            widget: text
+          - hint: 'Original text: Get Started, key: -364d0a89'
+            label: Text
+            name: '-364d0a89'
+            widget: string
+          - hint: 'Original text: Looking To Work Together?, key: 799978fe'
+            label: Text
+            name: 799978fe
+            widget: string
+          - hint: >-
+              Original text: We're happy to chat about how we can help your team
+              achieve key growth objectives., key: -8de2088
+            label: Text
+            name: '-8de2088'
+            widget: string
+          - hint: 'Original text: Contact Us, key: 7f2746de'
+            label: Text
+            name: 7f2746de
+            widget: string
+          - hint: 'Original text: Copyright 2021 © GrowthMeta, key: 6f5d8a6d'
+            label: Text
+            name: 6f5d8a6d
+            widget: string
+          - hint: 'Original text: Designed by , key: -711500fa'
+            label: Text
+            name: '-711500fa'
+            widget: string
+          - hint: 'Original text: Everyway, key: 14a92214'
+            label: Text
+            name: 14a92214
+            widget: string
+          - hint: 'Original text: Let''s Chat, key: -13f6fc6f'
+            label: Text
+            name: '-13f6fc6f'
+            widget: string
+          - hint: >-
+              Original text: Our work results speak by themselves., key:
+              -4ed778ce
+            label: Text
+            name: '-4ed778ce'
+            widget: string
+          - hint: >-
+              Original text: We help top startups, brands, and technology
+              companies Growth through experimentation and agile
+              implementation., key: -263cd9df
+            label: Text
+            name: '-263cd9df'
+            widget: text
+          - hint: >-
+              Original text: Learn About the Latest Growth Resources, key:
+              4debde87
+            label: Text
+            name: 4debde87
+            widget: string
+          - hint: >-
+              Original text: Nice, you're subscribed, we'll send you over what's
+              happening in Growth Weekly., key: -7e37e685
+            label: Text
+            name: '-7e37e685'
+            widget: string
+      - label: Links
+        name: links
+        file: cms/_data/links.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Links
+          - hint: 'Original link: /, key: 2f'
+            label: Link
+            name: 2f
+            widget: string
+          - hint: 'Original link: /case-studies, key: 3cf9f039'
+            label: Link
+            name: 3cf9f039
+            widget: string
+          - hint: 'Original link: http://go.growthmeta.com/resources, key: 1ffa91e9'
+            label: Link
+            name: 1ffa91e9
+            widget: string
+          - hint: >-
+              Original link: http://go.growthmeta.com/work-together, key:
+              -3b44ccc6
+            label: Link
+            name: '-3b44ccc6'
+            widget: string
+          - hint: 'Original link: https://everyway.io, key: -7b9c6acf'
+            label: Link
+            name: '-7b9c6acf'
+            widget: string
+          - hint: 'Original link: https://webflow.com/, key: 132c1309'
+            label: Link
+            name: 132c1309
+            widget: string
+          - hint: 'Original link: javascript:history.back();, key: 5e40ddac'
+            label: Link
+            name: 5e40ddac
+            widget: string
+          - hint: 'Original link: #, key: 23'
+            label: Link
+            name: '23'
+            widget: string
+          - hint: 'Original link: /resources, key: 634882d6'
+            label: Link
+            name: 634882d6
+            widget: string
+          - hint: >-
+              Original link:
+              https://meetings.hubspot.com/daniel1351/lets-talk-growth, key:
+              -2a8014a7
+            label: Link
+            name: '-2a8014a7'
+            widget: string
+      - label: Images
+        name: images
+        file: cms/_data/images.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Images
+          - label: Image
+            name: '-19d4aa8a'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: f06db4c
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-6a9db5cd'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-4be927e2'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-55c26bfd'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '20502532'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+publish_mode: editorial_workflow
